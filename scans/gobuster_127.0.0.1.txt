@@ -1,0 +1,4 @@
+http://127.0.0.1/.htpasswd (Status: 403)
+http://127.0.0.1/.htaccess (Status: 403)
+http://127.0.0.1/.hta (Status: 403)
+http://127.0.0.1/index.html (Status: 200)
