@@ -1,4 +1,5 @@
 <?php
+/* SPDX-License-Identifier: MIT */
 declare(strict_types=1);                        // ✔ Attiva type checking più rigoroso in PHP
 
 try {
