@@ -1,0 +1,13 @@
+# Python/venv
+.venv/
+__pycache__/
+# OS
+.DS_Store
+Thumbs.db
+# Logs & scans
+*.log
+scans/**/*.out
+scans/**/*.json
+scans/**/*.txt
+# Reports build
+reports/**/*.pdf
