@@ -1,4 +1,5 @@
 <?php
+/* SPDX-License-Identifier: MIT */
 declare(strict_types=1);
 
 // 1) Genera un nonce forte per QUESTA risposta
