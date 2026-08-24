@@ -2,6 +2,7 @@ name: CI
 on:
   push:
   pull_request:
+
 jobs:
   lint-shell:
     runs-on: ubuntu-latest
@@ -13,6 +14,7 @@ jobs:
           severity: warning
         env:
           SHELLCHECK_OPTS: -e SC1091
+
   lint-php:
     runs-on: ubuntu-latest
     steps:
@@ -22,4 +24,4 @@ jobs:
           php-version: '8.2'
       - name: PHP lint
         run: |
-          find src -type f -name "*.php" -print0 | xargs -0 -I{} php -l "{}" || true
+          find src -type f -name "*.php" -print0 | xargs -0 -r -n1 php -l
