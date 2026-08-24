@@ -24,8 +24,10 @@ jobs:
           php-version: '8.2'
       - name: PHP lint
         run: |
-          find src tests -type f -name "*.php" -print0 | xargs -0 -r -n1 php -l
+          find src tests tools -type f -name "*.php" -print0 | xargs -0 -r -n1 php -l
       - name: Offline Lab 02 tests
         run: php tests/headers_auditor_test.php
       - name: Offline Lab 03 tests
         run: php tests/metadata_scrubber_test.php
+      - name: Lab 03 learning transition
+        run: php tools/verify_lab03.php
