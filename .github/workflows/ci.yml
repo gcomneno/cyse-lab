@@ -27,3 +27,5 @@ jobs:
           find src tests -type f -name "*.php" -print0 | xargs -0 -r -n1 php -l
       - name: Offline Lab 02 tests
         run: php tests/headers_auditor_test.php
+      - name: Offline Lab 03 tests
+        run: php tests/metadata_scrubber_test.php
