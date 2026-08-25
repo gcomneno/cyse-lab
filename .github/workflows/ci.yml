@@ -31,3 +31,7 @@ jobs:
         run: php tests/metadata_scrubber_test.php
       - name: Lab 03 learning transition
         run: php tools/verify_lab03.php
+      - name: Offline Lab 04 tests
+        run: php tests/dependency_auditor_test.php
+      - name: Lab 04 learning transition
+        run: php tools/verify_lab04.php
