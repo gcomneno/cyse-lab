@@ -10,7 +10,7 @@ The current phase transition is:
 Observe -> Assess
 ```
 
-Labs 02 and 03 are complete. Lab 04 is the first canonical **Assess** unit and is currently in design.
+Labs 02, 03 and 04 are complete. Lab 04 is the first canonical **Assess** unit.
 
 ## Historical learning inventory
 
@@ -113,31 +113,33 @@ Implementation/evidence:
 - synthetic offline test fixtures;
 - original immutability evidence;
 - `reports/lab-03-verification.md`;
-- `reports/lessons-learned-lab-03.md`.
+- `reports/lab-03-lessons-learned.md`.
 
 Key boundary: `recognized EXIF absent` does not mean anonymous or free of all identifying information.
 
 ### Lab 04 — Dependency Vulnerability Auditor
 
-Status: **DESIGN IN PROGRESS — issue #16**
+Status: **COMPLETE by PR #21 when merged**
 
 Phase: **Assess**
 
-Design authority under review:
+Canonical design:
 
 - `docs/labs/04-dependency-vulnerability-auditor.md`
 
-Proposed v1 boundary:
+Implementation/evidence:
 
-- Composer/PHP only;
-- resolved `composer.lock` dependency evidence;
-- optional root `composer.json` for direct/transitive classification;
-- normalized advisory fixtures for deterministic offline assessment;
+- Composer/PHP-only v1;
+- resolved dependency evidence from `composer.lock`;
+- optional root `composer.json` for direct/transitive classification only;
+- normalized local advisory snapshots;
 - explicit `AFFECTED`, `NOT_KNOWN_AFFECTED`, `UNKNOWN`, `NOT_ASSESSABLE` semantics;
-- no automatic remediation;
-- no `SAFE` state.
+- deterministic offline tests;
+- fixed-snapshot learning transition;
+- `reports/lab-04-verification.md`;
+- `reports/lab-04-lessons-learned.md`.
 
-Implementation must remain out of scope until the design is reviewed and merged.
+Key boundary: `NOT_KNOWN_AFFECTED` is a bounded advisory statement, not proof that a dependency is safe.
 
 ## External-source provenance
 
@@ -150,6 +152,13 @@ For `CarterPerez-dev/Cybersecurity-Projects`:
 - current CYSE pattern: adapt the problem/learning objective while independently designing and implementing CYSE artifacts;
 - upstream implementation code remains `REFERENCE ONLY` unless an explicit later reuse/license decision says otherwise.
 
+For `usestrix/strix`:
+
+- educational/reference role: `REFERENCE ONLY`;
+- architectural reference role: `ADOPT`;
+- runtime verification and CI/security automation: `DEFER`;
+- any future PoV remains behind the learning-before-automation prerequisite gate.
+
 ## Current structural gaps
 
 The restart baseline is complete, but historical cleanup remains intentionally separate from new lab delivery:
@@ -159,7 +168,7 @@ The restart baseline is complete, but historical cleanup remains intentionally s
 3. some Lessons Learned material is embedded in broad historical documents;
 4. historical navigation can be improved without rewriting or deleting evidence.
 
-These gaps do not block Lab 04.
+These gaps do not invalidate the current canonical labs.
 
 ## Current learning direction
 
@@ -172,7 +181,9 @@ historical controlled foundations
     -> Lab 04: assess resolved software dependencies against advisory evidence
 ```
 
-Lab 04 deliberately introduces software-supply-chain assessment while preserving CYSE's defensive, explainable and evidence-driven boundary.
+Lab 04 establishes the first canonical **Assess** pattern: local evidence plus bounded external intelligence produces explainable assessment states with uncertainty preserved explicitly.
+
+The next unit should consolidate remaining Assess/prerequisite gaps. Offline network-traffic analysis is a strong candidate because it adds evidence classification without prematurely escalating to broad agentic automation.
 
 ## Historical preservation rule
 
