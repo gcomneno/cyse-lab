@@ -10,10 +10,26 @@ An external source must be assigned an explicit role before it influences implem
 
 - **REFERENCE ONLY** — study concepts, terminology, architecture, behavior or documentation; do not derive implementation code.
 - **ADAPT** — adopt the problem or learning objective while independently designing CYSE architecture, naming, tests and implementation.
-- **ADOPT** — intentionally reuse an external artifact or implementation under terms compatible with CYSE; requires explicit license and provenance review.
+- **ADOPT** — intentionally adopt an external artifact, implementation, or explicitly scoped reference role. The adopted dimension must be named and requires the review appropriate to that dimension.
 - **REJECT** — unsuitable for CYSE because of safety, educational value, overlap, licensing, cost or scope.
 
 `ADOPT` is never the default.
+
+### Role-aware decisions
+
+A single external project may legitimately have different decisions for different roles. Record the dimension explicitly rather than collapsing the project into one label.
+
+For example, `ADOPT` as an **architectural study reference** means CYSE deliberately treats the source as a useful architecture case study. It does **not** imply adoption of source code, dependencies, runtime, execution model or security conclusions.
+
+When code or another distributed artifact is actually reused, that reuse remains subject to the full license/provenance boundary below regardless of any non-code `ADOPT` decision.
+
+Recommended dimensions when relevant:
+
+- educational/reference role;
+- architectural-reference role;
+- code/artifact reuse;
+- runtime/tool execution;
+- CI/security automation.
 
 ## Clean-room boundary
 
@@ -66,6 +82,28 @@ When this boundary is unclear, the safe default is `REFERENCE ONLY`.
 | Token Abuse Playground | REFERENCE ONLY now | Intentionally vulnerable and higher-risk; requires explicit vulnerable-lab contract. |
 | Supply Chain Attack Simulator | REFERENCE ONLY now | Useful advanced concept; requires isolated local registry and stronger supply-chain prerequisites. |
 
+### usestrix/strix
+
+- Repository: `https://github.com/usestrix/strix`
+- License observed during the 2026-08-25 reconnaissance: Apache-2.0; re-check upstream before any future code/runtime adoption decision.
+- Educational/reference role: **REFERENCE ONLY**.
+- Architectural-reference role: **ADOPT**.
+- Code/artifact reuse: **NONE** by the current decision.
+- Runtime/tool verification role: **DEFER**.
+- CI/security-automation role: **DEFER**.
+
+The architectural `ADOPT` decision is deliberately narrow. CYSE treats Strix as a real-world case study for agentic security-testing architecture, including concepts such as orchestration, scope decomposition, tool coordination, finding/validation lifecycle, structured evidence/reporting, sandboxing, coverage accounting, cost signals and human review boundaries. This does not make Strix a CYSE curriculum, implementation template, runtime dependency or authority over vulnerability truth.
+
+Strix must not be installed or executed merely because it is registered here. A future runtime evaluation requires the learning/prerequisite gate in `docs/architecture.md` and a separately approved PoV.
+
+Any future Strix execution is limited to CYSE-owned/learner-owned systems, intentionally vulnerable applications, controlled staging/lab environments, or targets with explicit documented authorization. Technical sandboxing does not establish target authorization.
+
+The future candidate PoV is **Known Vulnerability Verification**. Its question is not whether Strix can find vulnerabilities, but:
+
+> What incremental value does Strix provide compared with manual verification and traditional tooling?
+
+That PoV remains deferred. No CI integration is authorized before a successful PoV and a separate downstream decision.
+
 ## Provenance expectation
 
 When a CYSE issue or document materially originates from an external candidate, record:
@@ -73,7 +111,7 @@ When a CYSE issue or document materially originates from an external candidate, 
 - source repository/document;
 - upstream license;
 - concept being referenced;
-- CYSE decision (`ADOPT / ADAPT / REFERENCE ONLY / REJECT`);
+- CYSE decision (`ADOPT / ADAPT / REFERENCE ONLY / REJECT`) and the role/dimension when decisions differ;
 - whether upstream implementation code was inspected before CYSE design;
 - any deliberate reuse and the license decision covering it.
 
