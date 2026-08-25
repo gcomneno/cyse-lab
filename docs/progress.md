@@ -2,185 +2,181 @@
 
 ## Status
 
-CYSE Lab has more completed learning evidence than the current README suggests. The repository bootstrap formalized only **Lab 01 — Recon Web essenziale**, while later material documents additional security learning that must now be normalized.
+CYSE Lab is active again and now has a canonical progression from historical controlled-learning evidence into independently designed, testable security-engineering labs.
 
-This file records the current evidence-based state before new labs are implemented.
+The current phase transition is:
 
-## Canonical inventory
+```text
+Observe -> Assess
+```
+
+Labs 02 and 03 are complete. Lab 04 is the first canonical **Assess** unit and is currently in design.
+
+## Historical learning inventory
+
+The repository predates the current numbered-lab architecture. The following material remains valid historical evidence and must be preserved while canonical packaging is improved.
 
 ### Unit A — Web recon and service discovery
 
-Status: **completed evidence, needs canonical packaging**
+Status: **completed historical evidence; canonical packaging still incomplete**
 
-Observed topics:
+Evidence includes:
 
-- `nmap -sC -sV` service discovery;
-- HTTP probing;
-- directory/content discovery with gobuster;
-- Nikto as an automated input source;
-- interpretation of HTTP methods and response behavior;
-- recording scan output.
-
-Evidence:
-
-- `reports/lessons_learned_1.md`
-- `scans/scan_basic_local.nmap`
-- `scans/gobuster_127.0.0.1.txt`
-- `scans/nikto_127.0.0.1.txt`
-- `tools/enumerate.sh`
-
-Gap:
-
-- README/navigation does not fully expose the evidence and Definition of Done.
+- `reports/lessons_learned_1.md`;
+- `scans/scan_basic_local.nmap`;
+- `scans/gobuster_127.0.0.1.txt`;
+- `scans/nikto_127.0.0.1.txt`;
+- `tools/enumerate.sh`.
 
 ### Unit B — Apache hardening
 
-Status: **completed evidence, needs canonical packaging**
+Status: **completed historical evidence**
 
-Observed topics:
-
-- `/server-status` restriction/removal;
-- security response headers;
-- ETag reduction;
-- ServerName configuration;
-- TRACE handling;
-- firewall/interface restrictions;
-- verification after changes.
-
-Evidence:
-
-- `reports/lessons_learned_1.md`
-- `docs/CSP.md`
-- historical scan output.
+Topics include response headers, `/server-status`, ETags, TRACE, ServerName, firewall/interface restrictions and post-change verification.
 
 ### Unit C — Controlled lab networking and logging
 
-Status: **completed evidence, needs canonical packaging**
+Status: **completed historical evidence; documentation normalization still desirable**
 
-Observed topics:
-
-- Kali attacker / Ubuntu defender VM model;
-- host-only isolation;
-- interface/address reasoning;
-- kernel/firewall logging for ICMP and new TCP connections;
-- distinction between application logs and network-level events.
-
-Evidence:
-
-- `docs/CSP.md`
-- Lessons Learned content embedded there.
-
-Gap:
-
-- this material is mixed into a CSP document and should eventually be separated canonically.
+Topics include isolated Kali/Ubuntu lab networking, interface/address reasoning and kernel/firewall logging.
 
 ### Unit D — SQL injection: exploit to fix
 
 Status: **completed controlled learning evidence**
 
-Observed topics:
-
-- vulnerable SQL concatenation;
-- controlled SQL injection demonstration;
-- prepared statements;
-- native vs emulated prepares;
-- password hashing and verification;
-- input validation;
-- multi-statement considerations;
-- second-order SQL injection reasoning.
-
-Evidence:
-
-- `docs/IGIENIC_LOGIN.md`
-- `src/login_explained.php`
-- `src/setup_db_explained.php`
-- Lessons Learned content in `docs/CSP.md`.
-
-Safety note:
-
-- the exploit evidence belongs to an owned local lab and must remain framed as controlled verification of a security property.
+Evidence includes `docs/IGIENIC_LOGIN.md`, explained PHP examples and controlled local exploit-to-fix reasoning.
 
 ### Unit E — Reflected XSS and contextual escaping
 
 Status: **completed controlled learning evidence**
 
-Observed topics:
-
-- reflected XSS;
-- HTML escaping;
-- context-specific escaping for HTML, attributes, URLs and JavaScript;
-- DOM `textContent` vs unsafe `innerHTML`;
-- CSP as defense in depth rather than an escaping replacement.
-
-Evidence:
-
-- `src/search.php`
-- `docs/CSP.md`.
+Evidence includes `src/search.php` and historical CSP/escaping notes.
 
 ### Unit F — Content Security Policy
 
-Status: **completed evidence, duplicated documentation**
+Status: **completed historical evidence; duplicate documentation remains**
 
-Observed topics:
-
-- server-wide CSP;
-- nonce-based CSP;
-- `strict-dynamic`;
-- CSP report-only mode;
-- interaction with escaping;
-- operational verification through response headers/browser behavior.
-
-Evidence:
-
-- `docs/CSP.md`
-- `docs/02. CSP.md`.
-
-Duplication:
-
-- `docs/CSP.md` and `docs/02. CSP.md` currently share the same blob/content and should be treated as duplicate paths until a canonical naming decision is made.
+`docs/CSP.md` and `docs/02. CSP.md` represent duplicate historical paths and should not be silently deleted without an explicit cleanup decision.
 
 ### Unit G — Secure login implementation notes
 
-Status: **completed evidence, duplicated documentation**
+Status: **completed historical evidence; duplicate documentation remains**
 
-Evidence:
+`docs/IGIENIC_LOGIN.md` and `docs/01 .IGIENIC_LOGIN.md` represent duplicate historical paths pending canonical cleanup.
 
-- `docs/IGIENIC_LOGIN.md`
-- `docs/01 .IGIENIC_LOGIN.md`.
+## Canonical numbered labs
 
-Duplication:
+### Lab 01 — Recon Web essenziale
 
-- both paths currently share the same blob/content and should be treated as duplicate paths until canonicalized.
+Status: **historical/bootstrap canonical lab**
 
-## Current gaps
+Role: foundational controlled reconnaissance and observation.
 
-The primary gaps are structural rather than conceptual:
+### Lab 02 — HTTP Security Headers Auditor
 
-1. only one lab is formally advertised;
-2. learning units are mixed across documents;
-3. duplicate paths obscure canonical sources;
-4. prerequisites and completion criteria are implicit;
-5. external-source provenance was not previously formalized;
-6. CI currently permits PHP lint failure without failing the workflow;
-7. no repository-specific `AGENTS.md` currently governs future work.
+Status: **COMPLETE**
 
-## Proposed next learning unit
+Phase: **Observe**
 
-**Lab 02 — HTTP Security Headers Auditor**
+Canonical design:
 
-Rationale:
+- `docs/labs/02-http-security-headers-auditor.md`
 
-- builds directly on Units A, B and F;
-- remains passive and low-impact;
-- converts manual HTTP/header knowledge into an explainable rule engine;
-- introduces deterministic findings, tests, CLI semantics and CI-friendly behavior;
-- can be independently designed without copying the external AGPL implementation.
+Implementation/evidence:
 
-Status: **design only; implementation not started**.
+- passive single-target HTTP(S) assessment;
+- deterministic header findings;
+- human/JSON semantic parity;
+- offline tests in CI;
+- learner-owned loopback `FAIL -> hardening -> PASS` evidence;
+- `reports/lab-02-local-verification.md`.
+
+Key boundary: findings describe observed response-header properties and do not certify an application as secure.
+
+### Lab 03 — Metadata Privacy Scrubber
+
+Status: **COMPLETE**
+
+Phase: **Observe**
+
+Canonical design:
+
+- `docs/labs/03-metadata-privacy-scrubber.md`
+
+Implementation/evidence:
+
+- JPEG-only v1;
+- structured JPEG marker traversal;
+- recognized EXIF APP1 inspection/removal;
+- non-destructive distinct-output contract;
+- independent post-scrub verification;
+- synthetic offline test fixtures;
+- original immutability evidence;
+- `reports/lab-03-verification.md`;
+- `reports/lessons-learned-lab-03.md`.
+
+Key boundary: `recognized EXIF absent` does not mean anonymous or free of all identifying information.
+
+### Lab 04 — Dependency Vulnerability Auditor
+
+Status: **DESIGN IN PROGRESS — issue #16**
+
+Phase: **Assess**
+
+Design authority under review:
+
+- `docs/labs/04-dependency-vulnerability-auditor.md`
+
+Proposed v1 boundary:
+
+- Composer/PHP only;
+- resolved `composer.lock` dependency evidence;
+- optional root `composer.json` for direct/transitive classification;
+- normalized advisory fixtures for deterministic offline assessment;
+- explicit `AFFECTED`, `NOT_KNOWN_AFFECTED`, `UNKNOWN`, `NOT_ASSESSABLE` semantics;
+- no automatic remediation;
+- no `SAFE` state.
+
+Implementation must remain out of scope until the design is reviewed and merged.
+
+## External-source provenance
+
+New external sources are governed by `docs/external-sources.md` and repository `AGENTS.md`.
+
+For `CarterPerez-dev/Cybersecurity-Projects`:
+
+- role: external learning/reference source and candidate-problem source;
+- license: AGPL-3.0;
+- current CYSE pattern: adapt the problem/learning objective while independently designing and implementing CYSE artifacts;
+- upstream implementation code remains `REFERENCE ONLY` unless an explicit later reuse/license decision says otherwise.
+
+## Current structural gaps
+
+The restart baseline is complete, but historical cleanup remains intentionally separate from new lab delivery:
+
+1. historical units are not all packaged as numbered labs;
+2. CSP and secure-login duplicate paths remain;
+3. some Lessons Learned material is embedded in broad historical documents;
+4. historical navigation can be improved without rewriting or deleting evidence.
+
+These gaps do not block Lab 04.
+
+## Current learning direction
+
+The canonical sequence is now:
+
+```text
+historical controlled foundations
+    -> Lab 02: observe HTTP security properties
+    -> Lab 03: observe and safely transform privacy metadata
+    -> Lab 04: assess resolved software dependencies against advisory evidence
+```
+
+Lab 04 deliberately introduces software-supply-chain assessment while preserving CYSE's defensive, explainable and evidence-driven boundary.
 
 ## Historical preservation rule
 
-Existing scans, notes and examples are learning evidence. They must not be deleted merely because a new canonical structure is introduced. Cleanup should distinguish:
+Existing scans, notes and examples are learning evidence. They must not be deleted merely because a new canonical structure exists. Cleanup must distinguish:
 
 - canonical current documentation;
 - historical evidence;
