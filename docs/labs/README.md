@@ -21,7 +21,7 @@ Core transition:
 
 ### Lab 03 — Metadata Privacy Scrubber
 
-Status: **completed by PR #15 when merged**
+Status: **completed**
 
 - Design: [`03-metadata-privacy-scrubber.md`](03-metadata-privacy-scrubber.md)
 - Implementation: `src/cyse_metadata.php`
@@ -38,19 +38,29 @@ Core transition:
 
 `inspect original -> recognized EXIF present -> scrub distinct output -> verify PASS -> original remains unchanged`
 
-## Next candidate
+### Lab 04 — Dependency Vulnerability Auditor
 
-### Dependency Vulnerability Auditor
+Status: **completed by PR #21 when merged**
 
-Provisional status: **candidate for design issue**
+- Design: [`04-dependency-vulnerability-auditor.md`](04-dependency-vulnerability-auditor.md)
+- Implementation: `src/cyse_deps.php`
+- Tests: `tests/dependency_auditor_test.php`
+- Learning-transition verifier: `tools/verify_lab04.php`
+- Verification evidence: `reports/lab-04-verification.md`
+- Lessons Learned: `reports/lab-04-lessons-learned.md`
 
 Learning phase: **Assess**
 
-Rationale:
+Scope: Composer/PHP resolved lockfile evidence with local normalized advisory snapshots.
 
-- moves CYSE from passive observation into explicit evidence classification;
-- combines software-engineering and cybersecurity value;
-- can operate on local dependency manifests and structured advisory data;
-- keeps the default safety boundary low-impact and non-exploitative.
+Core transition:
 
-No implementation is authorized until a dedicated design issue defines scope, advisory-source behavior, offline fixtures, false-positive handling and verification criteria.
+`resolved version A -> AFFECTED -> learner-controlled version B -> NOT_KNOWN_AFFECTED`
+
+Key boundary: `NOT_KNOWN_AFFECTED` is not `SAFE`; it is bounded to the supplied advisory snapshot and supported matching semantics.
+
+## Next direction
+
+The next canonical unit should be chosen from the remaining **Assess** prerequisites and candidate projects rather than automatically escalating to agentic tooling.
+
+Strong candidates include offline network-traffic analysis or another bounded assessment unit that consolidates prerequisite gaps. Any Strix runtime/PoV remains deferred behind the learning-before-automation capability gate in `docs/architecture.md`.
